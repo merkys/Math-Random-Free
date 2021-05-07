@@ -9,12 +9,12 @@ use warnings;
 use Array::Shuffle qw( shuffle_array );
 
 require Exporter;
-@ISA = qw(Exporter);
-@EXPORT = qw(
+our @ISA = qw(Exporter);
+our @EXPORT = qw(
     random_permutation 
     random_permuted_index
 );
-@EXPORT_OK = qw(
+our @EXPORT_OK = qw(
     random_permutation 
     random_permuted_index
     random_uniform 
@@ -46,9 +46,9 @@ sub random_uniform
     $high = 1 unless defined $high;
 
     if( wantarray ) {
-        return map { rand * ($high - $low) + $low } 1..$n;
+        return map { rand() * ($high - $low) + $low } 1..$n;
     } else {
-        return rand * ($high - $low) + $low;
+        return rand() * ($high - $low) + $low;
     }
 }
 
@@ -56,7 +56,7 @@ sub random_uniform_integer
 {
     my( $n, $low, $high ) = @_;
 
-    return map { int( rand * ($high - $low) + $low ) } 1..$n;
+    return map { int( rand() * ($high - $low) + $low ) } 1..$n;
 }
 
 1;
