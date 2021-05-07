@@ -6,8 +6,8 @@ use warnings;
 # ABSTRACT: Free drop-in replacement for Math::Random
 # VERSION
 
-use Array::Shuffle qw( shuffle_array );
 use Digest::SHA qw( sha1_hex );
+use List::Util qw( shuffle );
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -34,10 +34,7 @@ sub random_permuted_index
 {
     my( $n ) = @_;
 
-    my @array = 0..$n-1;
-    shuffle_array( @array );
-
-    return @array;
+    return shuffle 0..$n-1;
 }
 
 sub random_set_seed_from_phrase
