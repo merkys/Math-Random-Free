@@ -7,6 +7,7 @@ use warnings;
 # VERSION
 
 use Array::Shuffle qw( shuffle_array );
+use Digest::SHA qw( sha1_hex );
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -42,7 +43,9 @@ sub random_permuted_index
 sub random_set_seed_from_phrase
 {
     my( $seed ) = @_;
-    srand( 42 ); # HACK
+
+    # On 64-bit machine the max. value for srand() seems to be 2**50-1
+    srand hex substr( sha1_hex( $seed ), 0, 6 );
 }
 
 sub random_uniform
