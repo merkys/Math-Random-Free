@@ -64,7 +64,11 @@ sub random_uniform_integer
 {
     my( $n, $low, $high ) = @_;
 
-    return map { int( rand() * ($high - $low) + $low ) } 1..$n;
+    if( wantarray ) {
+        return map { int( rand() * ($high - $low) + $low ) } 1..$n;
+    } else {
+        return int( rand() * ($high - $low) + $low );
+    }
 }
 
 1;
