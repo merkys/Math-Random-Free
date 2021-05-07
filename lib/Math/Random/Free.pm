@@ -13,10 +13,12 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(
     random_permutation 
     random_permuted_index
+    random_set_seed_from_phrase
 );
 our @EXPORT_OK = qw(
     random_permutation 
     random_permuted_index
+    random_set_seed_from_phrase
     random_uniform 
     random_uniform_integer 
 );
@@ -35,6 +37,12 @@ sub random_permuted_index
     shuffle_array( @array );
 
     return @array;
+}
+
+sub random_set_seed_from_phrase
+{
+    my( $seed ) = @_;
+    srand( 42 ); # HACK
 }
 
 sub random_uniform
