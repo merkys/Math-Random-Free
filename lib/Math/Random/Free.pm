@@ -6,6 +6,53 @@ use warnings;
 # ABSTRACT: Free drop-in replacement for Math::Random
 # VERSION
 
+=pod
+
+=head1 NAME
+
+Math::Random::Free - free drop-in replacement for Math::Random
+
+=head1 DESCRIPTION
+
+This is free (see below) implementation of L<Math::Random|Math::Random>
+0.72, serving as drop-in replacement for this module.
+
+=head1 MOTIVATION
+
+L<Math::Random|Math::Random> is a great and widely-used module for the
+generation of random numbers and permutations. Despite being open-source,
+L<Math::Random|Math::Random> does not fulfill free open-source software
+definitions as established by the Open Source Initiative
+(L<https://opensource.org/osd>) and the Debian Project
+(L<https://www.debian.org/social_contract#guidelines>, a.k.a. DFSG). This
+is mostly because C<randlib> code cannot be copied nor distributed for
+direct commercial advantage. Math::Random::Free is created to free the
+code depending on L<Math::Random|Math::Random> from these limitations.
+
+=head1 CAVEATS
+
+This module has only a subset of L<Math::Random|Math::Random> subroutines
+(contributions welcome), implemented using either Perl core subroutines
+or other well-known modules. Thus Math::Random::Free is neither as
+complete, nor as fast, nor as random as L<Math::Random|Math::Random>.
+Also Math::Random::Free does not aim for cryptographic security.
+
+=head1 TESTED WITH
+
+=over 4
+
+=item *
+
+L<Graph::Maker> 0.02
+
+=back
+
+=head1 AUTHOR
+
+Andrius Merkys, L<mailto:merkys@cpan.org>
+
+=cut
+
 use Digest::SHA qw( sha1_hex );
 use List::Util qw( shuffle );
 
