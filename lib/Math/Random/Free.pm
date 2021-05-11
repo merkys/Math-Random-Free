@@ -29,28 +29,6 @@ is mostly because C<randlib> code cannot be copied nor distributed for
 direct commercial advantage. Math::Random::Free is created to free the
 code depending on L<Math::Random|Math::Random> from these limitations.
 
-=head1 CAVEATS
-
-This module has only a subset of L<Math::Random|Math::Random> subroutines
-(contributions welcome), implemented using either Perl core subroutines
-or other well-known modules. Thus Math::Random::Free is neither as
-complete, nor as fast, nor as random as L<Math::Random|Math::Random>.
-Also Math::Random::Free does not aim for cryptographic security.
-
-While Math::Random::Free supports seed setting, it does that differently
-from L<Math::Random|Math::Random>. It means that one should not expect
-the same seed producing identical random sequences in both modules.
-
-=head1 TESTED WITH
-
-=over 4
-
-=item *
-
-L<Graph::Maker> 0.02
-
-=back
-
 =cut
 
 use Digest::SHA qw( sha1_hex );
@@ -59,17 +37,34 @@ use List::Util qw( shuffle );
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(
-    random_permutation 
+    random_permutation
     random_permuted_index
     random_set_seed_from_phrase
 );
 our @EXPORT_OK = qw(
-    random_permutation 
+    random_permutation
     random_permuted_index
     random_set_seed_from_phrase
-    random_uniform 
-    random_uniform_integer 
+    random_uniform
+    random_uniform_integer
 );
+
+=head1 SUPPORT
+
+    our @EXPORT = qw(
+        random_permutation
+        random_permuted_index
+        random_set_seed_from_phrase
+    );
+    our @EXPORT_OK = qw(
+        random_permutation
+        random_permuted_index
+        random_set_seed_from_phrase
+        random_uniform
+        random_uniform_integer
+    );
+
+=cut
 
 sub random_permutation
 {
@@ -119,6 +114,32 @@ sub random_uniform_integer
         return int( rand($range) + $low );
     }
 }
+
+=head1 CAVEATS
+
+This module has only a subset of L<Math::Random|Math::Random> subroutines
+(contributions welcome), implemented using either Perl core subroutines
+or other well-known modules. Thus Math::Random::Free is neither as
+complete, nor as fast, nor as random as L<Math::Random|Math::Random>.
+Also Math::Random::Free does not aim for cryptographic security.
+
+While Math::Random::Free supports seed setting, it does that differently
+from L<Math::Random|Math::Random>. It means that one should not expect
+the same seed producing identical random sequences in both modules.
+
+As Math::Random::Free employs L<List::Util|List::Util> for producing
+random permutations, these are influenced by C<$List::Util::RAND>
+variable.
+
+=head1 TESTED WITH
+
+=over 4
+
+=item *
+
+L<Graph::Maker> 0.02
+
+=back
 
 =head1 AUTHOR
 
