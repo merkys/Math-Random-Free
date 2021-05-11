@@ -82,6 +82,7 @@ sub random_normal
     if( wantarray ) {
         return map { scalar random_normal( $n, $mean, $sd ) } 1..$n;
     } else {
+        # Box-Muller method
         return $mean + $sd * cos( 2 * $PI * (1 - rand) )
                            * sqrt( -2 * log(1 - rand) );
     }
