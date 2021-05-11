@@ -37,6 +37,10 @@ or other well-known modules. Thus Math::Random::Free is neither as
 complete, nor as fast, nor as random as L<Math::Random|Math::Random>.
 Also Math::Random::Free does not aim for cryptographic security.
 
+While Math::Random::Free supports seed setting, it does that differently
+from L<Math::Random|Math::Random>. It means that one should not expect
+the same seed producing identical random sequences in both modules.
+
 =head1 TESTED WITH
 
 =over 4
@@ -46,10 +50,6 @@ Also Math::Random::Free does not aim for cryptographic security.
 L<Graph::Maker> 0.02
 
 =back
-
-=head1 AUTHOR
-
-Andrius Merkys, L<mailto:merkys@cpan.org>
 
 =cut
 
@@ -119,5 +119,11 @@ sub random_uniform_integer
         return int( rand($range) + $low );
     }
 }
+
+=head1 AUTHOR
+
+Andrius Merkys, L<mailto:merkys@cpan.org>
+
+=cut
 
 1;
