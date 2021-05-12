@@ -43,6 +43,7 @@ our @EXPORT = qw(
     random_set_seed_from_phrase
 );
 our @EXPORT_OK = qw(
+    random_exponential
     random_normal
     random_permutation
     random_permuted_index
@@ -61,6 +62,7 @@ our $PI = 4 * atan2( 1, 1 );
         random_set_seed_from_phrase
     );
     our @EXPORT_OK = qw(
+        random_exponential
         random_normal
         random_permutation
         random_permuted_index
@@ -70,6 +72,20 @@ our $PI = 4 * atan2( 1, 1 );
     );
 
 =cut
+
+sub random_exponential
+{
+    my( $n, $rate ) = @_;
+
+    $n    = 1 unless defined $n;
+    $rate = 1 unless defined $rate;
+
+    if( wantarray ) {
+        return map { scalar random_exponential( $n, $rate ) } 1..$n;
+    } else {
+        return log( 1 - rand ) / -$rate;
+    }
+}
 
 sub random_normal
 {
