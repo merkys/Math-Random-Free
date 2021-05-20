@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 
-use Math::Random::Free qw( random_normal
+use Math::Random::Free qw( random_exponential
+                           random_normal
                            random_permutation
                            random_set_seed_from_phrase
                            random_uniform_integer );
@@ -13,6 +14,7 @@ my @tested = (
     sub { return random_uniform_integer( 1, 1, 123 ) },
     sub { return join ',', random_permutation( 0..9 ) },
     sub { return join ',', random_normal( 5 ) },
+    sub { return random_exponential },
 );
 plan tests => scalar @tested;
 
